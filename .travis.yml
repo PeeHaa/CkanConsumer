@@ -9,7 +9,6 @@ php:
 before_script:
   - composer self-update
   - composer install --dev
-  - pyrus install pear/PHP_CodeSniffer
   - phpenv rehash
 
 script:
