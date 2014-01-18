@@ -16,5 +16,5 @@ use CkanConsumer\Common\Autoloader;
 
 require_once __DIR__ . '/src/CkanConsumer/Common/Autoloader.php';
 
-$autoloader = new Autoloader(__NAMESPACE__, dirname(__DIR__));
+$autoloader = new Autoloader(__NAMESPACE__, __DIR__ . '/src');
 $autoloader->register();
