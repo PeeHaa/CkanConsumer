@@ -2,7 +2,7 @@
 /**
  * PSR-0 Autoloader
  *
- * PHP version 5.3
+ * PHP version 5.4
  *
  * @category   CkanConsumer
  * @package    Common
@@ -86,7 +86,7 @@ class Autoloader
      */
     public function register()
     {
-        return spl_autoload_register(array($this, 'load'));
+        return spl_autoload_register([$this, 'load']);
     }
 
     /**
@@ -96,6 +96,6 @@ class Autoloader
      */
     public function unregister()
     {
-        return spl_autoload_unregister(array($this, 'load'));
+        return spl_autoload_unregister([$this, 'load']);
     }
 }
