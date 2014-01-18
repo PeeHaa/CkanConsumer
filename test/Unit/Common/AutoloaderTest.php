@@ -45,6 +45,7 @@ class AutoloaderTest extends \PHPUnit_Framework_TestCase
      * @covers CkanConsumer\Common\Autoloader::__construct
      * @covers CkanConsumer\Common\Autoloader::register
      * @covers CkanConsumer\Common\Autoloader::load
+     * @covers CkanConsumer\Common\Autoloader::getPath
      */
     public function testLoadSuccess()
     {
@@ -64,6 +65,7 @@ class AutoloaderTest extends \PHPUnit_Framework_TestCase
      * @covers CkanConsumer\Common\Autoloader::__construct
      * @covers CkanConsumer\Common\Autoloader::register
      * @covers CkanConsumer\Common\Autoloader::load
+     * @covers CkanConsumer\Common\Autoloader::getPath
      */
     public function testLoadSuccessExtraSlashedNamespace()
     {
@@ -83,6 +85,7 @@ class AutoloaderTest extends \PHPUnit_Framework_TestCase
      * @covers CkanConsumer\Common\Autoloader::__construct
      * @covers CkanConsumer\Common\Autoloader::register
      * @covers CkanConsumer\Common\Autoloader::load
+     * @covers CkanConsumer\Common\Autoloader::getPath
      */
     public function testLoadSuccessExtraForwardSlashedPath()
     {
@@ -102,6 +105,7 @@ class AutoloaderTest extends \PHPUnit_Framework_TestCase
      * @covers CkanConsumer\Common\Autoloader::__construct
      * @covers CkanConsumer\Common\Autoloader::register
      * @covers CkanConsumer\Common\Autoloader::load
+     * @covers CkanConsumer\Common\Autoloader::getPath
      */
     public function testLoadSuccessExtraBackwardSlashedPath()
     {
@@ -121,6 +125,7 @@ class AutoloaderTest extends \PHPUnit_Framework_TestCase
      * @covers CkanConsumer\Common\Autoloader::__construct
      * @covers CkanConsumer\Common\Autoloader::register
      * @covers CkanConsumer\Common\Autoloader::load
+     * @covers CkanConsumer\Common\Autoloader::getPath
      */
     public function testLoadSuccessExtraMixedSlashedPath()
     {
@@ -140,6 +145,7 @@ class AutoloaderTest extends \PHPUnit_Framework_TestCase
      * @covers CkanConsumer\Common\Autoloader::__construct
      * @covers CkanConsumer\Common\Autoloader::register
      * @covers CkanConsumer\Common\Autoloader::load
+     * @covers CkanConsumer\Common\Autoloader::getPath
      */
     public function testLoadUnknownClass()
     {
@@ -150,6 +156,48 @@ class AutoloaderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($autoloader->register());
 
-        $this->assertFalse($autoloader->load('IDontExistClass'));
+        $this->assertNull($autoloader->load('IDontExistClass'));
+    }
+
+    /**
+     * @covers CkanConsumer\Common\Autoloader::__construct
+     * @covers CkanConsumer\Common\Autoloader::register
+     * @covers CkanConsumer\Common\Autoloader::load
+     */
+    public function testLoadClassFromUnknownNamespace()
+    {
+        $autoloader = new Autoloader(
+            'FakeProject',
+            dirname(__DIR__) . '/../Mocks/Common\\\\/\\//'
+        );
+
+        $this->assertTrue($autoloader->register());
+
+        $this->assertNull($autoloader->load('\\UnknownNamespace\\IDontExistClass'));
+    }
+
+    /**
+     * @covers CkanConsumer\Common\Autoloader::__construct
+     * @covers CkanConsumer\Common\Autoloader::register
+     * @covers CkanConsumer\Common\Autoloader::load
+     * @covers CkanConsumer\Common\Autoloader::getPath
+     */
+    public function testLoadUnknownClassStacked()
+    {
+        $autoloader = new Autoloader(
+            'OtherFakeProject',
+            dirname(__DIR__) . '/../Mocks/Common\\\\/\\//'
+        );
+
+        $this->assertTrue($autoloader->register());
+
+        $autoloader = new Autoloader(
+            'FakeProject',
+            dirname(__DIR__) . '/../Mocks/Common\\\\/\\//'
+        );
+
+        $this->assertTrue($autoloader->register());
+
+        $this->assertNull($autoloader->load('IDontExistClass'));
     }
 }

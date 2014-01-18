@@ -54,20 +54,29 @@ class Autoloader
     public function load($class)
     {
         $class = ltrim($class, '\\');
+
         if (strpos($class, $this->namespace) === 0) {
-            $nsparts   = explode('\\', $class);
-            $class     = array_pop($nsparts);
-            $nsparts[] = '';
-            $path      = $this->path . implode(DIRECTORY_SEPARATOR, $nsparts);
-            $path     .= str_replace('_', DIRECTORY_SEPARATOR, $class) . '.php';
+            $path = $this->getPath($class);
+
             if (file_exists($path)) {
                 require $path;
-
-                return true;
             }
         }
+    }
 
-        return false;
+    /**
+     * Gets the full path to the file of the class
+     *
+     * @param string $class The fully qualified class name
+     *
+     * @return boolean The full path to the class file
+     */
+    private function getPath($class)
+    {
+        $path      = explode('\\', $class);
+        $className = str_replace('_', '/', array_pop($path));
+
+        return $this->path . implode('/', $path) . '/' . $className . '.php';
     }
 
     /**
