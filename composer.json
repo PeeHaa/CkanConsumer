@@ -1,0 +1,21 @@
+{
+    "name": "peehaa/ckanconsumer",
+    "description": "CKAN library",
+    "keywords": ["ckan", "peehaa", "consumer", "api", "opendata"],
+    "homepage": "https://github.com/PeeHaa/CkanConsumer",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pieter Hordijk",
+            "email": "info@pieterhordijk.com",
+            "homepage": "https://pieterhordijk.com",
+            "role": "developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    }
+}
