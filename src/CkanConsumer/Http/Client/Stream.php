@@ -94,7 +94,7 @@ class Stream implements Client
             $headers[] = 'Content-Type: application/x-www-form-urlencoded';
         }
 
-        return $this->request($uri, http_build_query($body, '', '&'), $headers, 'POST');
+        return $this->request($uri, 'POST', http_build_query($body, '', '&'), $headers);
     }
 
     /**
@@ -107,7 +107,7 @@ class Stream implements Client
      */
     public function get($uri, array $headers = [])
     {
-        return $this->request($uri, null, $headers, 'GET');
+        return $this->request($uri, 'GET', null, $headers);
     }
 
     /**
@@ -120,7 +120,7 @@ class Stream implements Client
      *
      * @return string The response
      */
-    private function request($uri, $body, array $headers = [], $method)
+    private function request($uri, $method, $body, array $headers = [])
     {
         $headers[] = 'Content-Length: ' . strlen($body);
         $headers[] = 'Connection: close';
