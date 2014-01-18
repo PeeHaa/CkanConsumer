@@ -33,7 +33,7 @@ Add the following to your composer config file:
 
 ####Requirements
 
-This library runs on all officially supported PHP versions and HHVM.
+This library runs on PHP 5.4+ and HHVM.
 
 ####Contributing
 
