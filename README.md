@@ -7,6 +7,12 @@ This implementation is based on the [CKAN v2.2a documentation][docs].
 
 The goal of this library is to provide a nice, sane and uniform interface for the CKAN API.
 
+[![Build Status](https://travis-ci.org/PeeHaa/CkanConsumer.png?branch=master)](https://travis-ci.org/PeeHaa/CkanConsumer)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/PeeHaa/CkanConsumer/badges/quality-score.png?s=0cd9615b17c03cdb25b0129e4385b224ed2bac21)](https://scrutinizer-ci.com/g/PeeHaa/CkanConsumer/)
+[![Code Coverage](https://scrutinizer-ci.com/g/PeeHaa/CkanConsumer/badges/coverage.png?s=9c9e10105d5657cdbd7186f414f6b926473a8f5a)](https://scrutinizer-ci.com/g/PeeHaa/CkanConsumer/)
+[![Latest Stable Version](https://poser.pugx.org/peehaa/ckanconsumer/v/stable.png)](https://packagist.org/packages/peehaa/ckanconsumer)
+[![Total Downloads](https://poser.pugx.org/peehaa/ckanconsumer/downloads.png)](https://packagist.org/packages/peehaa/ckanconsumer)
+
 ####Installation
 
 ######Git:
